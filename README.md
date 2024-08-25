@@ -5,10 +5,10 @@ cpu上でRoBERTa事前学習を試してみる．\
 学習にかかる時間：およそ8分．\
 実際にはデータセットやプログラムの工夫が必要．
 # 実行環境
-Windows11 メモリ16GB
-python==3.8.18
+Windows11 メモリ16GB\
+python==3.8.18\
 pytorch : [公式サイト](https://pytorch.org/ "pytorch")からダウンロード\
-その他，必要なパッケージ（随時更新予定）
+その他，必要なパッケージ
 ```
 pip install -r requirements.txt
 ```
