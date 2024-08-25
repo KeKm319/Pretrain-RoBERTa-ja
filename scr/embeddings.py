@@ -25,12 +25,12 @@ class Embeddings(nn.Module):
     def __init__(self, vocab_size, emb_dim, max_len, dropout=0.1):
         super(Embeddings, self).__init__()
         self.word_embs = nn.Embedding(vocab_size, emb_dim, padding_idx=3)
-        self.pos_enc =nn.Embedding(max_len, emb_dim)
+        self.pos_enc =nn.Embedding(max_len+1, emb_dim)
         self.seg_emb = nn.Embedding(2, emb_dim)
         self.layer_norm = nn.LayerNorm(emb_dim)
         self.dropout = nn.Dropout(dropout)
         # position encodingの重みを三角関数で初期化
-        self.pos_enc.weight.data = position_encoding_init(max_len, emb_dim)
+        self.pos_enc.weight.data = position_encoding_init(max_len+1, emb_dim)
     def forward(self, input_ids, pos_ids, token_type_ids):
         """
         args:

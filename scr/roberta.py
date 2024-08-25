@@ -20,12 +20,7 @@ class MLM(nn.Module):
 class Model(nn.Module):
     def __init__(self, vocab_size, max_len, num_layers, num_attn_heads, hidden_dim, dropout=0.1):
         super(Model, self).__init__()
-        self.embedding = Embeddings(
-            vocab_size=vocab_size,
-            emb_dim=hidden_dim,
-            max_len=max_len,
-            dropout=dropout
-        )
+        self.embedding = Embeddings(vocab_size=vocab_size, emb_dim=hidden_dim, max_len=max_len, dropout=dropout)
         
         self.roberta = Encoder(num_layers=num_layers, num_heads=num_attn_heads, hidden_dim=hidden_dim, dropout=dropout)
         self.mlm = MLM(vocab_size, hidden_dim)
@@ -39,7 +34,7 @@ class Model(nn.Module):
             torch.tensor size=(batch_size, seq_length, vocab_size)
         """
         x = self.embedding(input_ids, pos_ids, token_type_ids)
-        out, weights = self.roberta(x)
+        out, weights = self.roberta(x, mask)
         out = self.mlm(out)
 
         if not return_weight:

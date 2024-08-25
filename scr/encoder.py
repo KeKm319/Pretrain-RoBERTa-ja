@@ -31,7 +31,7 @@ class Attention(nn.Module):
         k = self.key(x)
         v = self.value(x)
         if mask is None:
-            mask = torch.zeros_like(x, dype=torch.bool)
+            mask = torch.zeros_like(x, dtype=torch.bool)
         
         # (scale dot product attention) + (layer noermalization) + (projection)
         out, weight = self.MHA(query=q, key=k, value=v, key_padding_mask=mask)
