@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
-from embeddings import Embeddings
-from encoder import Encoder
+from scr.embeddings import Embeddings
+from scr.encoder import Encoder
 
 class MLM(nn.Module):
     def __init__(self, vocab_size, hidden_dim):
@@ -22,7 +22,7 @@ class Model(nn.Module):
         super(Model, self).__init__()
         self.embedding = Embeddings(
             vocab_size=vocab_size,
-            hidden_dim=hidden_dim,
+            emb_dim=hidden_dim,
             max_len=max_len,
             dropout=dropout
         )
