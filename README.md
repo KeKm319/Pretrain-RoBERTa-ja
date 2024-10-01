@@ -12,3 +12,6 @@ pytorch : [公式サイト](https://pytorch.org/ "pytorch")からダウンロー
 ```
 pip install -r requirements.txt
 ```
+
+
+
